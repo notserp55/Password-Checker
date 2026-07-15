@@ -1,0 +1,238 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║                       PASSWORD CHECKER                                   ║
+║                                                                          ║
+║  A tool that checks password strength and checks for data breaches       ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+QUICK START
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Install dependencies:
+   pip install requests
+
+2. Run the script:
+   python3 password_checker.py
+
+3. Enter a password when prompted.
+
+4. View your results.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+USAGE METHODS
+═══════════════════════════════════════════════════════════════════════════════
+
+METHOD 1: Interactive Mode (Recommended)
+───────────────────────────────────────────────────────────────────────────────
+
+Run without arguments, then enter a password when prompted:
+
+    python3 password_checker.py
+
+What happens:
+  • You'll be asked to enter a password
+  • The tool checks its strength (score 0-6)
+  • The tool checks if it's been leaked
+  • Results are displayed on screen
+
+Example:
+    $ python3 password_checker.py
+    Enter a password to check: HelloWorld123!
+
+
+METHOD 2: Command-Line Mode (Fastest)
+───────────────────────────────────────────────────────────────────────────────
+
+Run with your password as an argument:
+
+    python3 password_checker.py "your_password_here"
+
+What happens:
+  • Skips the prompt and checks immediately
+  • Same results as interactive mode
+
+Example:
+    $ python3 password_checker.py "HelloWorld123!"
+
+
+METHOD 3: Check Multiple Passwords
+───────────────────────────────────────────────────────────────────────────────
+
+Run with multiple passwords as arguments:
+
+    python3 password_checker.py "password1" "password2" "password3"
+
+What happens:
+  • Checks each password one at a time
+  • Shows results for each password
+
+Example:
+    $ python3 password_checker.py "password123" "HelloWorld123!" "qwerty"
+
+
+═══════════════════════════════════════════════════════════════════════════════
+UNDERSTANDING YOUR RESULTS
+═══════════════════════════════════════════════════════════════════════════════
+
+STRENGTH SCORE (0-6)
+───────────────────────────────────────────────────────────────────────────────
+
+Score    Rating      Meaning
+───────────────────────────────────────────────────────────────────────────────
+  5-6    🟢 GREAT    Excellent password — very secure
+  4      🟢 GOOD     Solid password — safe to use
+  3      🟡 DECENT   Okay — could be improved
+  0-2    🔴 WEAK     Do NOT use — easily cracked
+
+What each point means:
+───────────────────────────────────────────────────────────────────────────────
+  Length 12+      → +2 points
+  Length 8-11     → +1 point
+  Uppercase       → +1 point
+  Lowercase       → +1 point
+  Numbers         → +1 point
+  Symbols         → +1 point
+
+BREACH STATUS
+───────────────────────────────────────────────────────────────────────────────
+  ✅ Not leaked   → Password hasn't been found in data breaches
+  ⚠️ Leaked        → Password appears in known data breaches — CHANGE IT!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+SAMPLE OUTPUT
+═══════════════════════════════════════════════════════════════════════════════
+
+STRONG, SAFE PASSWORD
+───────────────────────────────────────────────────────────────────────────────
+
+$ python3 password_checker.py HelloWorld123!
+
+==================================================
+PASSWORD CHECK RESULTS
+==================================================
+
+Password: ************
+Hash: CBFDAC6008D9...
+
+Strength Score: 6/6 → 🟢 GREAT
+
+Feedback:
+  ✅ Good length (12+ characters)
+  ✅ Has uppercase letters
+  ✅ Has lowercase letters
+  ✅ Has numbers
+  ✅ Has symbols
+
+🔍 Checking if your password has been leaked...
+🟢 Good news: Password has not been leaked.
+
+
+WEAK, LEAKED PASSWORD
+───────────────────────────────────────────────────────────────────────────────
+
+$ python3 password_checker.py password123
+
+==================================================
+PASSWORD CHECK RESULTS
+==================================================
+
+Password: **********
+Hash: CBFDAC6008D9...
+
+Strength Score: 1/6 → 🔴 WEAK
+
+Feedback:
+  ❌ Too short (needs 8+ characters)
+  ❌ No uppercase letters
+  ✅ Has lowercase letters
+  ✅ Has numbers
+  ❌ No symbols
+
+🔍 Checking if your password has been leaked...
+🔴 WARNING: Password has been leaked!
+   ⚠️ Do NOT use this password anywhere!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+TIPS FOR STRONG PASSWORDS
+═══════════════════════════════════════════════════════════════════════════════
+
+  ✅ Use at least 12 characters
+  ✅ Include uppercase and lowercase letters
+  ✅ Include numbers
+  ✅ Include symbols (!@#$%^&*)
+  ✅ Use a passphrase (e.g., "BlueElephantJump!23")
+  ✅ Use unique passwords for every account
+  ✅ Consider using a password manager
+
+  ❌ Don't use common words (password, qwerty)
+  ❌ Don't use personal info (birthday, name)
+  ❌ Don't use sequential numbers (123456)
+  ❌ Don't reuse passwords
+
+
+═══════════════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════════════
+
+ISSUE: "ModuleNotFoundError: No module named 'requests'"
+───────────────────────────────────────────────────────────────────────────────
+  Solution:
+  pip install requests
+
+ISSUE: Connection timeout or error
+───────────────────────────────────────────────────────────────────────────────
+  Solution:
+  • Check your internet connection
+  • The HaveIBeenPwned API might be down
+  • Try again later
+
+ISSUE: "Error: Password contains invalid characters"
+───────────────────────────────────────────────────────────────────────────────
+  Solution:
+  • Passwords should be standard ASCII characters
+  • Make sure you're not using special characters that conflict with your terminal
+
+ISSUE: Command not recognized on Windows
+───────────────────────────────────────────────────────────────────────────────
+  Solution:
+  • Use python instead of python3:
+    python password_checker.py
+
+
+═══════════════════════════════════════════════════════════════════════════════
+FILE STRUCTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+password-checker/
+├── password_checker.py    # Main script
+├── README.md              # Full documentation
+├── USAGE.txt              # This file (quick reference)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+COMMAND REFERENCE
+═══════════════════════════════════════════════════════════════════════════════
+
+Action                                  Command
+───────────────────────────────────────────────────────────────────────────────
+Run interactive                        python3 password_checker.py
+
+Check one password                    python3 password_checker.py "password"
+
+Install dependencies                  pip install requests
+
+═══════════════════════════════════════════════════════════════════════════════
+VERSION INFORMATION
+═══════════════════════════════════════════════════════════════════════════════
+
+Version:     1.0
+Python:      3.6+
+Dependencies: requests
+
+
+═══════════════════════════════════════════════════════════════════════════════
