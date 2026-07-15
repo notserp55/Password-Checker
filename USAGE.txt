@@ -58,21 +58,6 @@ Example:
     $ python3 password_checker.py "HelloWorld123!"
 
 
-METHOD 3: Check Multiple Passwords
-───────────────────────────────────────────────────────────────────────────────
-
-Run with multiple passwords as arguments:
-
-    python3 password_checker.py "password1" "password2" "password3"
-
-What happens:
-  • Checks each password one at a time
-  • Shows results for each password
-
-Example:
-    $ python3 password_checker.py "password123" "HelloWorld123!" "qwerty"
-
-
 ═══════════════════════════════════════════════════════════════════════════════
 UNDERSTANDING YOUR RESULTS
 ═══════════════════════════════════════════════════════════════════════════════
